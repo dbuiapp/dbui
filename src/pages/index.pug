@@ -1,7 +1,9 @@
 doctype html
 html
   head
-    title Wut?
+    title DBUI #{version}
+    link(href="./main.css" rel="stylesheet")
   body
     #root
-    script(src="./main.js")
+    script.
+      require("./main.js")
