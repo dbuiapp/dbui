@@ -1,4 +1,7 @@
 {
-  "presets": ["react"],
-  "plugins": ["fast-async", "add-module-exports", "transform-es2015-modules-commonjs"]
+  "presets": ["es2015-node", "stage-0", "react"],
+  "plugins": [
+    "fast-async",
+    "add-module-exports"
+  ]
 }
