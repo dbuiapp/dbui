@@ -11,6 +11,7 @@ export class ConnectionSelector extends Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.resetConnectionSelector) {
       this.refs.selector.value = '';
+      this.setState({selectedConnection: null});
     }
   }
 

@@ -1,3 +1,4 @@
+//import './shim';
 import { app, BrowserWindow } from 'electron';
 import { resolve } from 'path';
 import './ipc';

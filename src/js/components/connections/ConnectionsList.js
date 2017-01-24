@@ -6,19 +6,17 @@ import ConnectionSelector from './ConnectionSelector';
 import { closeConnection, selectConnection } from '../../modules/connections/actions';
 
 class ConnectionsList extends Component {
-  closeConnection = (event) => {
+  closeConnection = connection => event => {
     event.stopPropagation();
     const { dispatch } = this.props;
     const target = event.target;
-    const id = target.getAttribute('data-id');
-    dispatch(closeConnection({ id }));
+    dispatch(closeConnection(connection));
   }
 
-  selectConnection = (event) => {
+  selectConnection = connection => event => {
     const { dispatch } = this.props;
     const target = event.target;
-    const id = target.getAttribute('data-id');
-    dispatch(selectConnection({ id }));
+    dispatch(selectConnection(connection));
   }
 
   render () {
@@ -29,9 +27,9 @@ class ConnectionsList extends Component {
           {existingConnections.map((connection) => {
             const selected = connection.id == (currentConnection && currentConnection.id);
             return (
-              <li key={connection.id} className={classNames({connection:1, button:1, secondary:1, expanded:1, selected})} data-id={connection.id} onClick={this.selectConnection}>
+              <li key={connection.id} className={classNames({connection:1, button:1, secondary:1, expanded:1, selected})} onClick={this.selectConnection(connection)}>
                 {React.createElement(datasources[connection.type].ConnectionListView, { connection })}
-                <a className="close-button button alert tiny" onClick={this.closeConnection} data-id={connection.id}>×</a>
+                <a className="close-button" onClick={this.closeConnection(connection)}>×</a>
               </li>
             );
           })}

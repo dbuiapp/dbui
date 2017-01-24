@@ -22,7 +22,7 @@ export class NotificationList extends Component {
           }
         )}
       </ul>
-    )
+    ) : null;
   }
 }
 
