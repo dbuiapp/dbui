@@ -6,7 +6,7 @@ import {
   setCurrentConnection,
   removeConnection,
   resetConnectionSelector,
-  freeConnectionSelector
+  freeConnectionSelector,
 } from './actions';
 import createEffectHandler from '../../util/createEffectHandler';
 import { createRequest } from '../../backend';
@@ -16,10 +16,10 @@ import { delay } from '../../util';
 export default createEffectHandler(handleActions({
   [actionTypes.ADD_CONNECTION]: addConnection,
   [actionTypes.SELECT_CONNECTION]: selectConnection,
-  [actionTypes.CLOSE_CONNECTION]: closeConnection
+  [actionTypes.CLOSE_CONNECTION]: closeConnection,
 }));
 
-async function addConnection (store, { payload }) {
+async function addConnection(store, { payload }) {
   try {
     const response = await createRequest('datasource', { action: 'addConnection', type: payload.type, payload });
 
@@ -34,9 +34,9 @@ async function addConnection (store, { payload }) {
   }
 }
 
-async function selectConnection (store, { payload }) {
+async function selectConnection(store, { payload }) {
   try {
-    //const response = await createResponse('datasource', {action: 'selectConnection', payload});
+    // const response = await createResponse('datasource', {action: 'selectConnection', payload});
 
     store.dispatch(setCurrentConnection(payload));
   } catch (err) {
@@ -44,9 +44,9 @@ async function selectConnection (store, { payload }) {
   }
 }
 
-async function closeConnection (store, { payload }) {
+async function closeConnection(store, { payload }) {
   try {
-    console.log(payload)
+    console.log(payload);
     // remove from backend
 
     store.dispatch(removeConnection(payload));

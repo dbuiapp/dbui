@@ -9,7 +9,7 @@ export const actionTypes = mapActions([
   'SELECT_CONNECTION',
   'SET_CURRENT_CONNECTION',
   'RESET_CONNECTION_SELECTOR',
-  'FREE_CONNECTION_SELECTOR'
+  'FREE_CONNECTION_SELECTOR',
 ], 'CONNECTIONS');
 
 export default actionTypes;

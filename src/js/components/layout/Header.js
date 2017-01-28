@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Header extends Component {
-  render () {
+  render() {
     const { store } = this.props;
     return (
-      <header></header>
+      <header />
     );
   }
-};
+}
 
 export default Header;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { name } from '../';
 
 export class ConnectionListView extends Component {
-  render () {
+  render() {
     const { connection } = this.props;
 
     return (

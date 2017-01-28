@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export class QueryTab extends Component {
 
-  render () {
+  render() {
     const { connection } = this.props;
 
     return (

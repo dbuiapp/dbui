@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ConnectionsList, CurrentConnection } from '../connections';
 
 class Body extends Component {
-  render () {
+  render() {
     const { store } = this.props;
     return (
       <div className="row">
@@ -12,6 +12,6 @@ class Body extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect()(Body);

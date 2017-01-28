@@ -5,4 +5,4 @@ export default async function ({ action, type, payload }) {
   const response = await datasource.actions[action](payload);
 
   return response;
-};
+}
