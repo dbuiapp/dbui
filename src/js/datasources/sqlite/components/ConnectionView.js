@@ -6,7 +6,7 @@ import { QueryTab } from './';
 
 export class ConnectionView extends Component {
 
-  render () {
+  render() {
     const { connection } = this.props;
 
     return (

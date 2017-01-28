@@ -1,4 +1,4 @@
-//import './shim';
+// import './shim';
 import React from 'react';
 import { render } from 'react-dom';
 import document from 'global/document';

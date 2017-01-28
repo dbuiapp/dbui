@@ -11,7 +11,7 @@ export const createRequest = (action, payload) => new Promise((resolve, reject) 
   const requestId = Date.now().toString(36) + Math.random().toString(16).slice(2);
 
   ipcRenderer.send('request', requestId, action, payload);
-  ipcRenderer.once('response-' + requestId, (event, payload) => {
+  ipcRenderer.once(`response-${requestId}`, (event, payload) => {
     resolve(payload);
   });
 });

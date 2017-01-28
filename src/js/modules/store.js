@@ -7,14 +7,14 @@ const initialState = {
   connections: {
     existingConnections: [],
   },
-  ui: {}
+  ui: {},
 };
 
-export function createStore () {
+export function createStore() {
   return reduxCreateStore(combineReducers({
     ui: uiReducer,
-    connections: connectionsReducer
+    connections: connectionsReducer,
   }), initialState, applyMiddleware(uiEffectHandler, connectionsEffectHandler, createLogger()));
-};
+}
 
 export default createStore;

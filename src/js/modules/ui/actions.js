@@ -5,7 +5,7 @@ export const actionTypes = mapActions([
   'INIT',
   'LOAD_START',
   'LOAD_END',
-  'ADD_NOTIFICATION'
+  'ADD_NOTIFICATION',
 ], 'UI');
 
 export default actionTypes;

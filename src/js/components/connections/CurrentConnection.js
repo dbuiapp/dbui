@@ -3,10 +3,10 @@ import * as datasources from '../../datasources';
 import { connect } from 'react-redux';
 
 class CurrentConnection extends Component {
-  selectConnection (connection) {
+  selectConnection(connection) {
     console.log(connection);
     const datasource = datasources[connection && connection.type];
-    console.log(datasource)
+    console.log(datasource);
     return datasource ? React.createElement(datasource.ConnectionView, { connection }) : (
       <div>
         Please select a connection
@@ -14,12 +14,12 @@ class CurrentConnection extends Component {
     );
   }
 
-  componentWillReceiveProps (props) {
-    console.log({props})
+  componentWillReceiveProps(props) {
+    console.log({ props });
   }
 
-  render () {
-    console.log(this.props)
+  render() {
+    console.log(this.props);
     const { currentConnection } = this.props;
     console.log(currentConnection);
     return (
@@ -28,8 +28,8 @@ class CurrentConnection extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect(state => ({
-  currentConnection: state.connections.currentConnection
+  currentConnection: state.connections.currentConnection,
 }))(CurrentConnection);

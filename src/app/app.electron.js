@@ -1,10 +1,10 @@
-//import './shim';
+// import './shim';
 import { app, BrowserWindow } from 'electron';
 import { resolve } from 'path';
 import './ipc';
 
 app.on('window-all-closed', () => {
-  app.quit()
+  app.quit();
 });
 
 app.on('ready', () => {
@@ -13,5 +13,5 @@ app.on('ready', () => {
 });
 
 app.on('error', (err) => {
-  console.trace(err)
+  console.trace(err);
 });

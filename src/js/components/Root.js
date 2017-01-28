@@ -4,7 +4,7 @@ import { Header, Body, Footer } from './layout';
 
 class Root extends Component {
 
-  render () {
+  render() {
     const { store } = this.props;
     return (
       <Provider store={store}>
@@ -16,6 +16,6 @@ class Root extends Component {
       </Provider>
     );
   }
-};
+}
 
 export default Root;

@@ -13,6 +13,6 @@ ipcMain.on('request', async (event, ...args) => {
     const response = await actionHandler(payload);
     event.sender.send(`response-${requestId}`, response);
   } catch (err) {
-    event.sender.send(`response-${requestId}`, {error: err.message || err});
+    event.sender.send(`response-${requestId}`, { error: err.message || err });
   }
 });
