@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { connectionAction } from '../../../modules/connections/actions'
+import { connectionAction } from '../../../modules/connections/actions';
 import QueryResult from './QueryResult';
 
 export class SchemaTab extends Component {
@@ -9,7 +9,7 @@ export class SchemaTab extends Component {
     event.preventDefault();
 
     const { dispatch, connection: { id, type } } = this.props;
-    const action = 'getSchema'
+    const action = 'getSchema';
     const form = event.target;
     const query = form.query.value;
 
@@ -25,13 +25,11 @@ export class SchemaTab extends Component {
           <input type="submit" className="button primary" value="submit" />
         </form>
         <ul className="no-bullet">
-          {(connection.schema || []).map((row, index) => {
-            return (
-              <li key={index}>
-                {row}
-              </li>
-            );
-          })}
+          {(connection.schema || []).map((row, index) => (
+            <li key={index}>
+              {row}
+            </li>
+            ))}
         </ul>
       </div>
     );

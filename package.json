@@ -7,7 +7,8 @@
     "package": "electron-packager . --out pkg",
     "precommit": "nrun lint",
     "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nrun test-unit",
+    "test-unit": "nyc --require babel-register --reporter=text --reporter=lcov mocha tests/unit/**/*.js",
     "build": "nrun clean-build && nrun build-pages && nrun build-css && nrun build-app && nrun build-js && nrun build-css",
     "watch": "nrun watch-app & nrun watch-js & nrun watch-css",
     "build-app": "babel src/app -d build/app",
@@ -24,6 +25,7 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.22.2",
+    "babel-eslint": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-fast-async": "^6.1.2",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -41,8 +43,10 @@
     "eslint-plugin-react": "^6.9.0",
     "fast-async": "^6.1.2",
     "husky": "^0.13.1",
+    "mocha": "^3.2.0",
     "node-sass": "^3.10.1",
     "nrun": "^0.1.7",
+    "nyc": "^10.1.2",
     "pug-cli": "^1.0.0-alpha6"
   },
   "dependencies": {
@@ -68,5 +72,10 @@
     "redux-logger": "^2.7.4",
     "sqlite": "^2.2.4",
     "uuid": "^3.0.1"
+  },
+  "nyc": {
+    "include": [
+      "src"
+    ]
   }
 }

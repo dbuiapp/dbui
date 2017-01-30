@@ -5,17 +5,17 @@ import { addConnection, selectConnection } from '../../modules/connections/actio
 
 export class ConnectionSelector extends Component {
 
-  state = {selectedConnection: null};
+  state = { selectedConnection: null };
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.resetConnectionSelector) {
       this.refs.selector.value = '';
-      this.setState({selectedConnection: null});
+      this.setState({ selectedConnection: null });
     }
   }
 
   onChange = (event) => {
-    this.setState({selectedConnection: event.target.value});
+    this.setState({ selectedConnection: event.target.value });
   }
 
   onSubmit = (event) => {
@@ -28,21 +28,19 @@ export class ConnectionSelector extends Component {
 
     const datasource = datasources[type];
     const fields = datasource.fields;
-    const settings = fields.reduce((settings, field) => ({...settings, [field]: form[field].value}), {});
+    const settings = fields.reduce((settings, field) => ({ ...settings, [field]: form[field].value }), {});
 
-    dispatch(addConnection({...settings, type}));
+    dispatch(addConnection({ ...settings, type }));
   }
 
-  render () {
+  render() {
     const { selectedConnection } = this.state;
 
     return (
       <form onSubmit={this.onSubmit}>
         <select ref="selector" name="type" className="expanded small" onChange={this.onChange}>
           <option value="">Data Source</option>
-          {Object.entries(datasources).map(([key, value]) => {
-            return <option key={key} value={key}>{value.name || key}</option>
-          })}
+          {Object.entries(datasources).map(([key, value]) => <option key={key} value={key}>{value.name || key}</option>)}
         </select>
         {selectedConnection ? React.createElement(datasources[selectedConnection].components.DatasourceConfig) : null}
       </form>
@@ -51,5 +49,5 @@ export class ConnectionSelector extends Component {
 }
 
 export default connect(state => ({
-  resetConnectionSelector: state.connections.resetConnectionSelector
+  resetConnectionSelector: state.connections.resetConnectionSelector,
 }))(ConnectionSelector);

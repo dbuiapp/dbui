@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { connectionAction } from '../../../modules/connections/actions'
+import { connectionAction } from '../../../modules/connections/actions';
 import QueryResult from './QueryResult';
 
 export class VisualizeTab extends Component {
@@ -9,7 +9,7 @@ export class VisualizeTab extends Component {
     event.preventDefault();
 
     const { dispatch, connection: { id, type } } = this.props;
-    const action = 'runQuery'
+    const action = 'runQuery';
     const form = event.target;
     const query = form.query.value;
 
@@ -25,13 +25,11 @@ export class VisualizeTab extends Component {
           <input type="submit" className="button primary" value="submit" />
         </form>
         <ul className="no-bullet">
-          {(connection.queries || []).map((query, index) => {
-            return (
-              <li key={index}>
-                {React.createElement(QueryResult, {query, connection, index})}
-              </li>
-            );
-          })}
+          {(connection.queries || []).map((query, index) => (
+            <li key={index}>
+              {React.createElement(QueryResult, { query, connection, index })}
+            </li>
+            ))}
         </ul>
       </div>
     );

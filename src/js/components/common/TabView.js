@@ -3,44 +3,38 @@ import { Tabs, TabItem, TabsContent, TabPanel } from 'react-foundation';
 
 export default class TabView extends Component {
   static propTypes = {
-    defaultTab: PropTypes.string
+    defaultTab: PropTypes.string,
   };
 
-  state = {activeTab: null};
+  state = { activeTab: null };
 
-  componentDidMount () {
+  componentDidMount() {
     const { defaultTab } = this.props;
     if (defaultTab) {
-      this.setState({activeTab: defaultTab});
+      this.setState({ activeTab: defaultTab });
     }
   }
 
-  activeTab = (tabId) => {
-    return {isActive: this.state.activeTab == tabId};
-  }
+  activeTab = tabId => ({ isActive: this.state.activeTab == tabId })
 
-  activeTabTitle = (tabId) => {
-    return {"aria-selected": this.state.activeTab == tabId};
-  }
+  activeTabTitle = tabId => ({ 'aria-selected': this.state.activeTab == tabId })
 
-  activePanel = (tabId) => {
-    return {isActive: this.state.activeTab == tabId, "aria-hidden": this.state.activeTab != tabId};
-  }
+  activePanel = tabId => ({ isActive: this.state.activeTab == tabId, 'aria-hidden': this.state.activeTab != tabId })
 
   tabClick = (event) => {
     const tab = event.target.getAttribute('data-tab');
     if (tab) {
-      this.setState({activeTab: tab});
+      this.setState({ activeTab: tab });
     }
   }
 
-  render () {
+  render() {
     const { children } = this.props;
 
     return (
       <div>
         <Tabs onClick={this.tabClick}>
-          {(Array.isArray(children) ? children : [children]).map(child => {
+          {(Array.isArray(children) ? children : [children]).map((child) => {
             const { tabId, label } = child.props;
             return (
               <TabItem key={tabId} {...this.activeTab(tabId)}>
@@ -50,7 +44,7 @@ export default class TabView extends Component {
           })}
         </Tabs>
         <TabsContent>
-          {(Array.isArray(children) ? children : [children]).map(child => {
+          {(Array.isArray(children) ? children : [children]).map((child) => {
             const { tabId } = child.props;
             return (
               <TabPanel key={tabId} {...this.activePanel(tabId)}>
