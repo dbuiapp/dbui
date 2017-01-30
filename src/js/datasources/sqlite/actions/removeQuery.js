@@ -1,9 +1,9 @@
 import { createRequest } from '../../../backend';
-import { updateConnection } from '../../../modules/connections/actions'
+import { updateConnection } from '../../../modules/connections/actions';
 
 
-export default async function removeQuery (store, payload) {
-  console.log(store, payload)
+export default async function removeQuery(store, payload) {
+  console.log(store, payload);
   const { query, id, index } = payload;
   const { connections } = store.getState();
   const updatedConnection = connections.existingConnections.filter(conn => conn.id == id)[0];

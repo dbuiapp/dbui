@@ -7,7 +7,7 @@ import {
   removeConnection,
   resetConnectionSelector,
   freeConnectionSelector,
-  connectionData
+  connectionData,
 } from './actions';
 import createEffectHandler from '../../util/createEffectHandler';
 import { createRequest } from '../../backend';
@@ -19,7 +19,7 @@ export default createEffectHandler(handleActions({
   [actionTypes.SELECT_CONNECTION]: selectConnection,
   [actionTypes.CLOSE_CONNECTION]: closeConnection,
   [actionTypes.CONNECTION_ACTION]: connectionAction,
-  [actionTypes.SAVE_STATE]: saveState
+  [actionTypes.SAVE_STATE]: saveState,
 }));
 
 async function addConnection(store, { payload }) {
@@ -61,7 +61,7 @@ async function closeConnection(store, { payload }) {
   }
 }
 
-async function connectionAction (store, { payload }) {
+async function connectionAction(store, { payload }) {
   try {
     const { type, action } = payload;
     const datasource = datasources[type];
@@ -78,7 +78,7 @@ async function connectionAction (store, { payload }) {
   }
 }
 
-async function saveState (store, { payload }) {
+async function saveState(store, { payload }) {
   const connectionState = store.getState().connections;
   localStorage.setItem('connectionState', JSON.stringify(connectionState));
 }

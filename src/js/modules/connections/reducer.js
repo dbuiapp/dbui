@@ -8,10 +8,10 @@ export default handleActions({
   [actionTypes.REMOVE_CONNECTION]: (state, { payload }) => ({ ...state, existingConnections: state.existingConnections.filter(conn => conn.id != payload.id) }),
   [actionTypes.SET_CURRENT_CONNECTION]: setCurrentConnection,
   [actionTypes.OVERRIDE_STATE]: (state, { payload }) => (payload),
-  [actionTypes.UPDATE_CONNECTION]: updateConnection
+  [actionTypes.UPDATE_CONNECTION]: updateConnection,
 }, { existingConnections: [], connectionData: {} });
 
-function setCurrentConnection (state, { payload }) {
+function setCurrentConnection(state, { payload }) {
   const { existingConnections } = state;
   const currentConnection = existingConnections.filter(conn => conn.id == payload.id)[0];
   if (!currentConnection) {
@@ -19,15 +19,15 @@ function setCurrentConnection (state, { payload }) {
   }
   return {
     ...state,
-    currentConnection
+    currentConnection,
   };
 }
 
-function updateConnection (state, { payload }) {
-
+function updateConnection(state, { payload }) {
 // we need to do a full refresh of the connections
-  let updatedConnection = null, currentConnection = null;
-  const existingConnections = state.existingConnections.map(conn => {
+  let updatedConnection = null,
+    currentConnection = null;
+  const existingConnections = state.existingConnections.map((conn) => {
     if (conn.id = payload.id) {
       updatedConnection = Object.assign({}, updatedConnection, payload);
     }
@@ -46,6 +46,6 @@ function updateConnection (state, { payload }) {
   return {
     ...state,
     currentConnection,
-    existingConnections
+    existingConnections,
   };
 }

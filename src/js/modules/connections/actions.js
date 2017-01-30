@@ -14,7 +14,7 @@ export const actionTypes = mapActions([
   'CONNECTION_DATA',
   'OVERRIDE_STATE',
   'SAVE_STATE',
-  'UPDATE_CONNECTION'
+  'UPDATE_CONNECTION',
 ], 'CONNECTIONS');
 
 export default actionTypes;
