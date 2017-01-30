@@ -5,7 +5,7 @@ import { NotificationList } from '../../../components/common';
 
 export class DatasourceConfig extends Component {
 
-  state = {currentPath: null};
+  state = { currentPath: null };
 
   showDialog = async (event) => {
     if (this.debounce) {
@@ -17,20 +17,20 @@ export class DatasourceConfig extends Component {
       const response = await createRequest('createFileDialog', {
         type: event.target.getAttribute('data-type'),
         title: 'Select Database Path',
-        buttonLabel: 'OK'
+        buttonLabel: 'OK',
       });
       this.debounce = false;
-      this.setState({currentPath: response});
+      this.setState({ currentPath: response });
     } catch (err) {
       this.debounce = false;
     }
   }
 
-  getPathSelector () {
+  getPathSelector() {
     const { currentPath } = this.state;
     return (
       <div className="sqlite config">
-        <input ref="hiddenpath" type="hidden" name="path" value={currentPath || ""} />
+        <input ref="hiddenpath" type="hidden" name="path" value={currentPath || ''} />
         <a className="button small expanded" data-type="save" onClick={this.showDialog}>
           New Path
         </a>
@@ -41,7 +41,7 @@ export class DatasourceConfig extends Component {
     );
   }
 
-  render () {
+  render() {
     const { currentPath } = this.state;
 
     return (
@@ -52,7 +52,7 @@ export class DatasourceConfig extends Component {
               this.getPathSelector() :
               <input name="path" className="small expand" type="text" placeholder="Path" />
           }
-          {currentPath || ""}
+          {currentPath || ''}
         </div>
         <input type="submit" disabled={!currentPath} className="button small expanded" value="Connect" />
       </div>

@@ -3,5 +3,7 @@
 /db
 /settings.json
 /pkg
+/.nyc_output
+/coverage
 
 db.sqlite
