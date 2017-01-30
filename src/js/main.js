@@ -8,7 +8,6 @@ import Root from './components/Root';
 import { init } from './modules/ui/actions';
 
 
-
 const store = createStore();
 store.dispatch(init());
 

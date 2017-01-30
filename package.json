@@ -4,6 +4,9 @@
   "description": "",
   "main": "build/app/app.electron.js",
   "scripts": {
+    "package": "electron-packager . --out pkg",
+    "precommit": "nrun lint",
+    "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "nrun clean-build && nrun build-pages && nrun build-css && nrun build-app && nrun build-js && nrun build-css",
     "watch": "nrun watch-app & nrun watch-js & nrun watch-css",
@@ -63,6 +66,7 @@
     "redux-actions": "^0.13.0",
     "redux-form": "^6.5.0",
     "redux-logger": "^2.7.4",
-    "sqlite": "^2.2.4"
+    "sqlite": "^2.2.4",
+    "uuid": "^3.0.1"
   }
 }

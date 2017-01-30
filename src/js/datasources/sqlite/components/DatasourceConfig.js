@@ -17,7 +17,6 @@ export class DatasourceConfig extends Component {
       const response = await createRequest('createFileDialog', {
         type: event.target.getAttribute('data-type'),
         title: 'Select Database Path',
-        defaultPath: 'db.sqlite',
         buttonLabel: 'OK'
       });
       this.debounce = false;

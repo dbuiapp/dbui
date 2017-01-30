@@ -1,8 +1,8 @@
 import { createRequest } from '../../../backend';
-import { updateConnection } from '../../../modules/connections/actions'
+import { updateConnection } from '../../../modules/connections/actions';
 
 
-export default async function runQuery (store, payload) {
+export default async function runQuery(store, payload) {
   const { query, id } = payload;
   const response = await createRequest('connection', payload);
   const { connections } = store.getState();
@@ -14,9 +14,9 @@ export default async function runQuery (store, payload) {
 
   updatedConnection.queries = (updatedConnection.queries || []).concat([
     {
-      query: query,
-      results: response
-    }
+      query,
+      results: response,
+    },
   ]);
 
   store.dispatch(updateConnection(updatedConnection));
