@@ -1,0 +1,12 @@
+.sqlite {
+  &.view {
+    .result {
+      background: white;
+      color: #222;
+      box-shadow: 2px 2px black;
+      .result-row {
+        box-shadow: 2px 2px black;
+      }
+    }
+  }
+}

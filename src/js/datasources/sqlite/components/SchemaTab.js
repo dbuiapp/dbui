@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { connectionAction } from '../../../modules/connections/actions'
 import QueryResult from './QueryResult';
 
-export class QueryTab extends Component {
+export class SchemaTab extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
 
     const { dispatch, connection: { id, type } } = this.props;
-    const action = 'runQuery'
+    const action = 'getSchema'
     const form = event.target;
     const query = form.query.value;
 
@@ -25,10 +25,10 @@ export class QueryTab extends Component {
           <input type="submit" className="button primary" value="submit" />
         </form>
         <ul className="no-bullet">
-          {(connection.queries || []).map((query, index) => {
+          {(connection.schema || []).map((row, index) => {
             return (
               <li key={index}>
-                {React.createElement(QueryResult, {query, connection, index})}
+                {row}
               </li>
             );
           })}
@@ -38,4 +38,4 @@ export class QueryTab extends Component {
   }
 }
 
-export default connect()(QueryTab);
+export default connect()(SchemaTab);

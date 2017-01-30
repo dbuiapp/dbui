@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 
 class CurrentConnection extends Component {
   selectConnection(connection) {
-    console.log(connection);
     const datasource = datasources[connection && connection.type];
-    console.log(datasource);
-    return datasource ? React.createElement(datasource.ConnectionView, { connection }) : (
+    return datasource ? React.createElement(datasource.components.ConnectionView, { connection }) : (
       <div>
         Please select a connection
       </div>
@@ -19,9 +17,7 @@ class CurrentConnection extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { currentConnection } = this.props;
-    console.log(currentConnection);
     return (
       <div className="small-12 medium-9 columns current-connection">
         {this.selectConnection(currentConnection)}

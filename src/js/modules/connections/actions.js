@@ -10,6 +10,11 @@ export const actionTypes = mapActions([
   'SET_CURRENT_CONNECTION',
   'RESET_CONNECTION_SELECTOR',
   'FREE_CONNECTION_SELECTOR',
+  'CONNECTION_ACTION',
+  'CONNECTION_DATA',
+  'OVERRIDE_STATE',
+  'SAVE_STATE',
+  'UPDATE_CONNECTION'
 ], 'CONNECTIONS');
 
 export default actionTypes;
@@ -22,3 +27,8 @@ export const selectConnection = createAction(actionTypes.SELECT_CONNECTION);
 export const setCurrentConnection = createAction(actionTypes.SET_CURRENT_CONNECTION);
 export const resetConnectionSelector = createAction(actionTypes.RESET_CONNECTION_SELECTOR);
 export const freeConnectionSelector = createAction(actionTypes.FREE_CONNECTION_SELECTOR);
+export const connectionAction = createAction(actionTypes.CONNECTION_ACTION);
+export const connectionData = createAction(actionTypes.CONNECTION_DATA);
+export const overrideState = createAction(actionTypes.OVERRIDE_STATE);
+export const saveState = createAction(actionTypes.SAVE_STATE);
+export const updateConnection = createAction(actionTypes.UPDATE_CONNECTION);

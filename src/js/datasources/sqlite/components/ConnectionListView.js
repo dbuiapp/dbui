@@ -7,7 +7,7 @@ export class ConnectionListView extends Component {
     const { connection } = this.props;
 
     return (
-      <div>
+      <div className="sqlite listview">
         <div>{name}</div>
         <div className="connection-description">{connection.path}</div>
       </div>

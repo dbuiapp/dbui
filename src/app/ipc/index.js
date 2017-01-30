@@ -3,9 +3,8 @@ import * as actions from './actions';
 
 ipcMain.on('request', async (event, ...args) => {
   try {
-    const requestId = args[0];
-    const action = args[1];
-    const payload = args[2];
+    const [ requestId, action, payload ] = args;
+
     const actionHandler = actions[action];
     if (!actionHandler) {
       throw new Error(`Action '${action}' does not exist`);

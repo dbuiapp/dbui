@@ -1,7 +1,7 @@
 {
-  "presets": ["es2015-node", "stage-0", "react"],
+  "presets": ["es2015-node", "es2017", "stage-0", "react"],
   "plugins": [
-    "fast-async",
+    "transform-runtime",
     "add-module-exports"
   ]
 }
