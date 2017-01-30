@@ -13,6 +13,7 @@ export class DatasourceConfig extends Component {
     }
     this.debounce = true;
     try {
+      // TODO: move this to redux
       const response = await createRequest('createFileDialog', {
         type: event.target.getAttribute('data-type'),
         title: 'Select Database Path',
@@ -29,7 +30,7 @@ export class DatasourceConfig extends Component {
   getPathSelector () {
     const { currentPath } = this.state;
     return (
-      <div>
+      <div className="sqlite config">
         <input ref="hiddenpath" type="hidden" name="path" value={currentPath || ""} />
         <a className="button small expanded" data-type="save" onClick={this.showDialog}>
           New Path

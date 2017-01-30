@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { connectionAction } from '../../../modules/connections/actions'
 import QueryResult from './QueryResult';
 
-export class QueryTab extends Component {
+export class VisualizeTab extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ export class QueryTab extends Component {
   render() {
     const { connection } = this.props;
     return (
-      <div>
+      <div className="visualize">
         <form onSubmit={this.onSubmit}>
           <input type="text" name="query" />
           <input type="submit" className="button primary" value="submit" />
@@ -38,4 +38,4 @@ export class QueryTab extends Component {
   }
 }
 
-export default connect()(QueryTab);
+export default connect()(VisualizeTab);

@@ -28,7 +28,7 @@ class ConnectionsList extends Component {
             const selected = connection.id == (currentConnection && currentConnection.id);
             return (
               <li key={connection.id} className={classNames({connection:1, button:1, secondary:1, expanded:1, selected})} onClick={this.selectConnection(connection)}>
-                {React.createElement(datasources[connection.type].ConnectionListView, { connection })}
+                {React.createElement(datasources[connection.type].components.ConnectionListView, { connection })}
                 <a className="close-button" onClick={this.closeConnection(connection)}>×</a>
               </li>
             );

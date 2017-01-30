@@ -1,4 +1,4 @@
-import { registry } from '../../';
+import { registry } from '../../../datasources';
 
 export default async function ({ id, query }) {
   const connectionInfo = registry.getConnection(id);

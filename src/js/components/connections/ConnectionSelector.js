@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as datasources from '../../datasources/';
-import { objectKeyPairs } from '../../util';
 import { connect } from 'react-redux';
 import { addConnection, selectConnection } from '../../modules/connections/actions';
 
@@ -41,11 +40,11 @@ export class ConnectionSelector extends Component {
       <form onSubmit={this.onSubmit}>
         <select ref="selector" name="type" className="expanded small" onChange={this.onChange}>
           <option value="">Data Source</option>
-          {objectKeyPairs(datasources).map(([key, value]) => {
+          {Object.entries(datasources).map(([key, value]) => {
             return <option key={key} value={key}>{value.name || key}</option>
           })}
         </select>
-        {selectedConnection ? React.createElement(datasources[selectedConnection].DatasourceConfig) : null}
+        {selectedConnection ? React.createElement(datasources[selectedConnection].components.DatasourceConfig) : null}
       </form>
     );
   }

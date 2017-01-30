@@ -10,12 +10,12 @@ export class ConnectionView extends Component {
     const { connection } = this.props;
 
     return (
-      <div>
+      <div className="sqlite view">
         <div>{name}</div>
         <div className="connection-description">{connection.path}</div>
         <TabView defaultTab="query">
           <Tab label="Query" tabId="query">
-            <QueryTab />
+            <QueryTab connection={connection} />
           </Tab>
           <Tab label="Schema" tabId="schema">
             Schema
