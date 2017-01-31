@@ -2,17 +2,22 @@ import { createRequest } from '../../../backend';
 import { updateConnection } from '../../../modules/connections/actions';
 
 
-export default async function getSchema(store, payload) {
+export default async function visualize(store, payload) {
   const { query, id } = payload;
-  const response = await createRequest('connection', payload);
+  const response = await createRequest('connection', { id, query, action: 'runQuery'});
   const { connections } = store.getState();
   const updatedConnection = connections.existingConnections.filter(conn => conn.id == id)[0];
 
   if (!updatedConnection) {
     throw new Error('Could not find connection');
   }
-console.log('schema', response);
-  updatedConnection.schema = response;
+
+  updatedConnection.visualizations = (updatedConnection.visualizations || []).concat([
+    {
+      query,
+      results: response,
+    },
+  ]);
 
   store.dispatch(updateConnection(updatedConnection));
 

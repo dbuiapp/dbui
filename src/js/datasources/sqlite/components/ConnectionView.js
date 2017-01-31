@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TabView, Tab } from '../../../components/common';
 import { name } from '../';
-import { QueryTab } from './';
+import { QueryTab, SchemaTab, VisualizeTab } from './';
 
 export class ConnectionView extends Component {
 
@@ -11,17 +11,19 @@ export class ConnectionView extends Component {
 
     return (
       <div className="sqlite view">
-        <div>{name}</div>
-        <div className="connection-description">{connection.path}</div>
+        <div className="row">
+          <div className="columns small-6">{name}</div>
+          <div className="text-right columns small-6">{connection.path}</div>
+        </div>
         <TabView defaultTab="query">
           <Tab label="Query" tabId="query">
             <QueryTab connection={connection} />
           </Tab>
           <Tab label="Schema" tabId="schema">
-            Schema
+            <SchemaTab connection={connection} />
           </Tab>
           <Tab label="Visualize" tabId="visualize">
-            Visualize
+            <VisualizeTab connection={connection} />
           </Tab>
         </TabView>
       </div>

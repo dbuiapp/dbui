@@ -1,6 +1,7 @@
+import { expect } from 'chai';
 import { createStore, applyMiddleware } from 'redux';
 import { handleActions } from 'redux-actions';
-import createEffectHandler from "../../../src/js/util/createEffectHandler";
+import { createEffectHandler } from "../../../src/js/util/";
 
 describe("createEffectHandler", () => {
   it("should do stuff", (done) => {

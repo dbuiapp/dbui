@@ -5,32 +5,50 @@ import QueryResult from './QueryResult';
 
 export class SchemaTab extends Component {
 
-  onSubmit = (event) => {
-    event.preventDefault();
-
+  onRefresh = () => {
     const { dispatch, connection: { id, type } } = this.props;
     const action = 'getSchema';
-    const form = event.target;
-    const query = form.query.value;
 
-    dispatch(connectionAction({ id, type, action, query }));
+    dispatch(connectionAction({ id, type, action }));
   }
+
+  resultTable (results) {
+    if (!results || !results.length) {
+      return "No results";
+    }
+    const fields = Object.keys(results[0]);
+    console.log(fields, results)
+    return (
+      <table>
+        <thead>
+          <tr>
+            {fields.map(field => (
+              <th>{field}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {results.map(result => (
+            <tr>
+              {fields.map(field => (
+                <td>{result[field]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+
 
   render() {
     const { connection } = this.props;
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <input type="text" name="query" />
-          <input type="submit" className="button primary" value="submit" />
-        </form>
-        <ul className="no-bullet">
-          {(connection.schema || []).map((row, index) => (
-            <li key={index}>
-              {row}
-            </li>
-            ))}
-        </ul>
+        <div>
+          <a className="button" onClick={this.onRefresh}>Refresh</a>
+        </div>
+        {this.resultTable(connection.schema)}
       </div>
     );
   }
