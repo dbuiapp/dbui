@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { connectionAction } from '../../../modules/connections/actions';
 import QueryResult from './QueryResult';
+import d3 from 'd3';
 
 export class VisualizeTab extends Component {
 
@@ -9,7 +10,7 @@ export class VisualizeTab extends Component {
     event.preventDefault();
 
     const { dispatch, connection: { id, type } } = this.props;
-    const action = 'runQuery';
+    const action = 'visualize';
     const form = event.target;
     const query = form.query.value;
 

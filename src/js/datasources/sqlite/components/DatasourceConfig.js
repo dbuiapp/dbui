@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createRequest, name as backendName } from '../../../backend';
 import { NotificationList } from '../../../components/common';
+import { shortenPath } from '../../../util';
 
 export class DatasourceConfig extends Component {
 
@@ -43,7 +44,6 @@ export class DatasourceConfig extends Component {
 
   render() {
     const { currentPath } = this.state;
-
     return (
       <div>
         <div>
@@ -52,9 +52,8 @@ export class DatasourceConfig extends Component {
               this.getPathSelector() :
               <input name="path" className="small expand" type="text" placeholder="Path" />
           }
-          {currentPath || ''}
         </div>
-        <input type="submit" disabled={!currentPath} className="button small expanded" value="Connect" />
+        <input type="submit" disabled={!currentPath} className="button small expanded" value={currentPath ? `Connect to: ${shortenPath(String(currentPath))}` : 'Connect'} />
       </div>
     );
   }

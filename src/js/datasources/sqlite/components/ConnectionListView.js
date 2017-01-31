@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { name } from '../';
+import { shortenPath } from '../../../util';
 
 export class ConnectionListView extends Component {
   render() {
@@ -8,8 +9,7 @@ export class ConnectionListView extends Component {
 
     return (
       <div className="sqlite listview">
-        <div>{name}</div>
-        <div className="connection-description">{connection.path}</div>
+        <div className="connection-description">{name}: {shortenPath(connection.path)}</div>
       </div>
     );
   }

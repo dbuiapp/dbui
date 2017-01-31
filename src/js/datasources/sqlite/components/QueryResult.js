@@ -4,8 +4,40 @@ import { connectionAction } from '../../../modules/connections/actions'
 
 export class QueryResult extends Component {
 
+  onRemove = (event) => {
+
+  }
+
   onRefresh = (event) => {
 
+  }
+
+  resultTable (results) {
+    if (!results || !results.length) {
+      return "No results";
+    }
+    const fields = Object.keys(results[0]);
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            {fields.map((field, index) => (
+              <th key={index}>{field}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {results.map((result, index) => (
+            <tr key={index}>
+              {fields.map(field => (
+                <td>{result[field]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   }
 
   render() {
@@ -13,25 +45,10 @@ export class QueryResult extends Component {
 
     return (
       <div className="result">
-        <div className="">< className=""></a></div>
+        <a className="refresh-button" onClick={this.onRefresh}>↺</a>
+        <a className="remove-button" onClick={this.onRemove}>×</a>
         <div className="result-query">{query.query}</div>
-        <ul className="no-bullet">
-          {(query.results || []).map((result, index) => {
-            return (
-              <li className="result-row" key={index}>
-                {
-                  Object.entries(result).map(([key, value]) => {
-                    return (
-                      <span title={key} key={key}>
-                        {value}
-                      </span>
-                    );
-                  })
-                }
-              </li>
-            );
-          })}
-        </ul>
+        {this.resultTable(query.results)}
       </div>
     );
   }
