@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { connectionAction } from '../../../modules/connections/actions'
+import { connectionAction } from '../../../modules/connections/actions';
 
 export class QueryResult extends Component {
 
@@ -12,9 +12,9 @@ export class QueryResult extends Component {
 
   }
 
-  resultTable (results) {
+  resultTable(results) {
     if (!results || !results.length) {
-      return "No results";
+      return 'No results';
     }
     const fields = Object.keys(results[0]);
 

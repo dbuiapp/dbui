@@ -12,12 +12,12 @@ export class SchemaTab extends Component {
     dispatch(connectionAction({ id, type, action }));
   }
 
-  resultTable (results) {
+  resultTable(results) {
     if (!results || !results.length) {
-      return "No results";
+      return 'No results';
     }
     const fields = Object.keys(results[0]);
-    console.log(fields, results)
+    console.log(fields, results);
     return (
       <table>
         <thead>

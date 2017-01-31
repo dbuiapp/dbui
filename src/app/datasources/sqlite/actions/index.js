@@ -1,4 +1,4 @@
-export { default as addConnection } from './addConnection';
-export { default as runQuery } from './runQuery';
-export { default as execQuery } from './execQuery';
-export { default as getSchema } from './getSchema';
+export addConnection from './addConnection';
+export runQuery from './runQuery';
+export execQuery from './execQuery';
+export getSchema from './getSchema';

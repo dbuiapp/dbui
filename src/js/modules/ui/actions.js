@@ -1,11 +1,13 @@
-import mapActions from '../../util/mapActions';
 import { createAction } from 'redux-actions';
+import mapActions from '../../util/mapActions';
 
 export const actionTypes = mapActions([
   'INIT',
   'LOAD_START',
   'LOAD_END',
   'ADD_NOTIFICATION',
+  'REMOVE_NOTIFICATION',
+  'CLEAR_NOTIFICATIONS',
 ], 'UI');
 
 export default actionTypes;

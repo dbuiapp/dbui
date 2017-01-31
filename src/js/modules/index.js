@@ -1,2 +1,3 @@
-export { default as createStore } from './store';
-export { default as ui } from './ui';
+export connections from './connections';
+export ui from './ui';
+export { createStore } from './store';

@@ -2,3 +2,4 @@ extends: eslint-config-airbnb
 parser: babel-eslint
 rules:
   no-console: 0
+  react/jsx-filename-extension: 0
