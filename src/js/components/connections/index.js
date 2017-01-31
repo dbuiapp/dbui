@@ -1,2 +1,2 @@
-export { default as ConnectionsList } from './ConnectionsList';
-export { default as CurrentConnection } from './CurrentConnection';
+export ConnectionsList from './ConnectionsList';
+export CurrentConnection from './CurrentConnection';

@@ -1,5 +1,5 @@
-import actionTypes from './actions';
 import { handleActions } from 'redux-actions';
+import { actionTypes } from './actions';
 
 export default handleActions({
   [actionTypes.NEW_CONNECTION]: (state, action) => ({ ...state, existingConnections: [...state.existingConnections, action.payload] }),

@@ -1,7 +1,7 @@
 import { createStore as reduxCreateStore, combineReducers, applyMiddleware } from 'redux';
+import createLogger from 'redux-logger';
 import { reducer as uiReducer, effectHandler as uiEffectHandler } from './ui';
 import { reducer as connectionsReducer, effectHandler as connectionsEffectHandler } from './connections';
-import createLogger from 'redux-logger';
 
 const initialState = {
   connections: {

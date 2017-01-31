@@ -11,7 +11,7 @@ export default async function getSchema(store, payload) {
   if (!updatedConnection) {
     throw new Error('Could not find connection');
   }
-console.log('schema', response);
+  console.log('schema', response);
   updatedConnection.schema = response;
 
   store.dispatch(updateConnection(updatedConnection));

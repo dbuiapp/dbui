@@ -1,16 +1,17 @@
+import global from 'global';
+import { handleActions } from 'redux-actions';
 import { actionTypes } from './actions';
 import createEffectHandler from '../../util/createEffectHandler';
-import { handleActions } from 'redux-actions';
-import { actions } from '../connections';
+import { overrideState } from '../connections/actions';
 
-export default createEffectHandler(handleActions({
-  [actionTypes.INIT]: init,
-}));
-
-async function init({ dispatch, getState }, { payload }) {
-  const connectionState = localStorage.getItem('connectionState');
-  // , JSON.stringify(payload));
+async function init({ dispatch }) {
+  const connectionStateValue = global.localStorage.getItem('connectionState');
+  const connectionState = JSON.stringify(connectionStateValue);
   if (connectionState) {
     dispatch(overrideState(JSON.parse(connectionState)));
   }
 }
+
+export default createEffectHandler(handleActions({
+  [actionTypes.INIT]: init,
+}));
