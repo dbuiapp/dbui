@@ -16,7 +16,7 @@ export default {
       config: BarGraphConfig,
     },
     transform: barGraphTransform,
-  },
+  }, /*
   line: {
     name: 'Line Graph',
     fields: ['xExpression', 'yExpression', 'joinExpressions', 'whereExpressions', 'groupExpressions'],
@@ -25,5 +25,5 @@ export default {
       config: LineGraphConfig,
     },
     transform: lineGraphTransform,
-  },
+  },*/
 };

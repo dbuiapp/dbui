@@ -45,7 +45,6 @@ export default class BarGraph extends Component {
     return (
       <div ref={setRef(this, 'container')} className="visualization bar-graph">
         <svg ref={setRef(this, 'svg')} />
-        {JSON.stringify(visualization)}
       </div>
     );
   }
