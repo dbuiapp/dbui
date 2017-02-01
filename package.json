@@ -27,7 +27,7 @@
     "generate-settings": "node --harmony scripts/generate-settings.js",
     "clean-build": "rm -rf build/*"
   },
-  "author": "",
+  "author": "Richard Hoffman <coverslide@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.22.2",
