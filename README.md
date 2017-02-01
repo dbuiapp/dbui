@@ -19,20 +19,20 @@ Getting Started
 TODO
 ====
 
-[ ] More visualization types
-[ ] Schema editor
-[ ] Query builder
-[ ] Data import / export
-[ ] CI integration
-[ ] Improve test suite
-[ ] Improve style
-[ ] Icons / branding
-[ ] Packaging for multiple platforms
-[ ] Support multiple backends (maybe)
+- [ ] More visualization types
+- [ ] Schema editor
+- [ ] Query builder
+- [ ] Data import / export
+- [ ] CI integration
+- [ ] Improve test suite
+- [ ] Improve style
+- [ ] Icons / branding
+- [ ] Packaging for multiple platforms
+- [ ] Support multiple backends (maybe)
 
 Planned Future Datasource Targets
 =================================
 
-[ ] MongoDB
-[ ] Redis
-[ ] Elasticsearch
+- [ ] MongoDB
+- [ ] Redis
+- [ ] Elasticsearch
