@@ -8,6 +8,21 @@ export class DatasourceConfig extends Component {
 
   state = { currentPath: null };
 
+  getPathSelector() {
+    const { currentPath } = this.state;
+    return (
+      <div className="sqlite config">
+        <input type="hidden" name="path" value={currentPath || ''} />
+        <a className="button small expanded" data-type="save" onClick={this.showDialog}>
+          New Path
+        </a>
+        <a className="button small expanded" data-type="open" onClick={this.showDialog}>
+          Existing Path
+        </a>
+      </div>
+    );
+  }
+
   showDialog = async (event) => {
     if (this.debounce) {
       return;
@@ -25,21 +40,6 @@ export class DatasourceConfig extends Component {
     } catch (err) {
       this.debounce = false;
     }
-  }
-
-  getPathSelector() {
-    const { currentPath } = this.state;
-    return (
-      <div className="sqlite config">
-        <input ref="hiddenpath" type="hidden" name="path" value={currentPath || ''} />
-        <a className="button small expanded" data-type="save" onClick={this.showDialog}>
-          New Path
-        </a>
-        <a className="button small expanded" data-type="open" onClick={this.showDialog}>
-          Existing Path
-        </a>
-      </div>
-    );
   }
 
   render() {

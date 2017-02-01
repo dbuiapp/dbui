@@ -7,6 +7,10 @@ const DEFAULT_VISUALIZATION = 'bar';
 
 export class VisualizationChooser extends Component {
 
+  componentWillMount() {
+    this.setState({ type: DEFAULT_VISUALIZATION });
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
     const { dispatch, connection: { id, type } } = this.props;
@@ -21,17 +25,13 @@ export class VisualizationChooser extends Component {
     visualization.fields.forEach((field) => {
       const input = form[field];
       if (input.length) {
-        params[field] = Array.from(input).map(input => input.value);
+        params[field] = Array.from(input).map(_input => _input.value);
       } else {
         params[field] = input.value;
       }
     });
 
     dispatch(connectionAction({ id, type, action, visType, params }));
-  }
-
-  componentWillMount() {
-    this.setState({ type: DEFAULT_VISUALIZATION });
   }
 
   getVisualizationConfig(type) {

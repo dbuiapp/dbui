@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import * as datasources from '../../datasources/';
 import { connect } from 'react-redux';
+import * as datasources from '../../datasources/';
 import ConnectionSelector from './ConnectionSelector';
 import { closeConnection, selectConnection } from '../../modules/connections/actions';
 
@@ -25,11 +25,16 @@ class ConnectionsList extends Component {
       <div className="small-12 medium-3 columns connections-panel">
         <ul className="connections no-bullet">
           {existingConnections.map((connection) => {
-            const selected = connection.id == (currentConnection && currentConnection.id);
+            const selected = connection.id === (currentConnection && currentConnection.id);
             return (
-              <li key={connection.id} className={classNames({ connection: 1, button: 1, secondary: 1, expanded: 1, selected })} onClick={this.selectConnection(connection)}>
-                {React.createElement(datasources[connection.type].components.ConnectionListView, { connection })}
-                <a className="close-button" onClick={this.closeConnection(connection)}>×</a>
+              <li key={connection.id}>
+                <div
+                  className={classNames('connection button secondary expanded', { selected })}
+                  onClick={this.selectConnection(connection)}
+                >
+                  {React.createElement(datasources[connection.type].components.ConnectionListView, { connection })}
+                  <a className="close-button" onClick={this.closeConnection(connection)}>×</a>
+                </div>
               </li>
             );
           })}

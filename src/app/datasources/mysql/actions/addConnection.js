@@ -13,5 +13,5 @@ export default async function ({ host: hostname, username: user, password, datab
   const connectionInfo = { id, type, connection };
   await registry.addConnection(connectionInfo);
 
-  return { id, host, database, type };
+  return { id, host: hostname, username: user, password, database, type };
 }
