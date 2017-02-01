@@ -1,7 +1,8 @@
 import { registry } from '../../';
 
-export default async function ({id, query}) {
+export default async function ({ id, query }) {
   const connectionInfo = registry.getConnection(id);
 
-  return await connectionInfo.connection.all(query);
+  const response = await connectionInfo.connection.all(query);
+  return response;
 }

@@ -4,7 +4,7 @@ import { registry } from '../../../datasources';
 
 const type = 'sqlite';
 
-export default async function ({ path, ...rest }) {
+export default async function ({ path }) {
   const connection = await sqlite.open(path);
   const id = uuid();
 

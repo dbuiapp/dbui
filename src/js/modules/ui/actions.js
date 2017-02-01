@@ -8,7 +8,7 @@ export const actionTypes = mapActions([
   'ADD_NOTIFICATION',
   'REMOVE_NOTIFICATION',
   'CLEAR_NOTIFICATIONS',
-  'SET_DIMENSIONS'
+  'SET_DIMENSIONS',
 ], 'UI');
 
 export default actionTypes;

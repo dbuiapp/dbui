@@ -1,18 +1,13 @@
 import { handleActions } from 'redux-actions';
 import { actionTypes } from './actions';
 
-export default handleActions({
-  [actionTypes.NEW_CONNECTION]: (state, action) => ({ ...state, existingConnections: [...state.existingConnections, action.payload] }),
-  [actionTypes.RESET_CONNECTION_SELECTOR]: state => ({ ...state, resetConnectionSelector: true }),
-  [actionTypes.FREE_CONNECTION_SELECTOR]: state => ({ ...state, resetConnectionSelector: false }),
-  [actionTypes.REMOVE_CONNECTION]: (state, { payload }) => ({ ...state, existingConnections: state.existingConnections.filter(conn => conn.id != payload.id).slice() }),
-  [actionTypes.SET_CURRENT_CONNECTION]: setCurrentConnection,
-  [actionTypes.UPDATE_CONNECTION]: updateConnection,
-}, { existingConnections: [], connectionData: {} });
+function newConnection(state, action) {
+  return { ...state, existingConnections: [...state.existingConnections, action.payload] };
+}
 
 function setCurrentConnection(state, { payload }) {
   const { existingConnections } = state;
-  const currentConnection = existingConnections.filter(conn => conn.id == payload.id)[0];
+  const currentConnection = existingConnections.filter(conn => conn.id === payload.id)[0];
   if (!currentConnection) {
     return state;
   }
@@ -27,7 +22,7 @@ function updateConnection(state, { payload }) {
   let updatedConnection = null;
   let currentConnection = null;
   const existingConnections = state.existingConnections.map((conn) => {
-    if (conn.id == payload.id) {
+    if (conn.id === payload.id) {
       updatedConnection = Object.assign({}, updatedConnection, payload);
     }
     return conn;
@@ -37,7 +32,7 @@ function updateConnection(state, { payload }) {
     return state;
   }
 
-  if (state.currentConnection.id == payload.id) {
+  if (state.currentConnection.id === payload.id) {
     currentConnection = updatedConnection;
   } else {
     currentConnection = state.currentConnection;
@@ -49,3 +44,19 @@ function updateConnection(state, { payload }) {
     existingConnections,
   };
 }
+
+function removeConnection(state, { payload }) {
+  return {
+    ...state,
+    existingConnections: state.existingConnections.filter(conn => conn.id !== payload.id).slice(),
+  };
+}
+
+export default handleActions({
+  [actionTypes.NEW_CONNECTION]: newConnection,
+  [actionTypes.RESET_CONNECTION_SELECTOR]: state => ({ ...state, resetConnectionSelector: true }),
+  [actionTypes.FREE_CONNECTION_SELECTOR]: state => ({ ...state, resetConnectionSelector: false }),
+  [actionTypes.REMOVE_CONNECTION]: removeConnection,
+  [actionTypes.SET_CURRENT_CONNECTION]: setCurrentConnection,
+  [actionTypes.UPDATE_CONNECTION]: updateConnection,
+}, { existingConnections: [], connectionData: {} });

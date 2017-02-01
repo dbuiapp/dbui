@@ -1,5 +1,5 @@
-import mapActions from '../../util/mapActions';
 import { createAction } from 'redux-actions';
+import { mapActions } from '../../util';
 
 export const actionTypes = mapActions([
   'ADD_CONNECTION',

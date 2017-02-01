@@ -7,17 +7,17 @@ export class NotificationList extends Component {
     const { category, dispatch } = this.props;
     const index = event.target.getAttribute('data-index');
 
-    dispatch(removeNotification({category, index}));
+    dispatch(removeNotification({ category, index }));
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     const { category = 'default', notifications, ...restProps } = this.props;
-    console.log(notifications, notifications[category])
+    console.log(notifications, notifications[category]);
     return notifications && notifications[category] && notifications[category].length ? (
       <ul {...restProps} >
         {(notifications[category] || [])
-          //.filter(notification => (category && notification.category) ? (notification.category == category) : true)
+          // .filter(notification => (category && notification.category) ? (notification.category == category) : true)
           .map((notification, index) => {
             if (typeof notification === 'string') {
               return (
@@ -35,6 +35,6 @@ export class NotificationList extends Component {
   }
 }
 
-export default connect((state) => ({
-  notifications: state.ui.notifications
+export default connect(state => ({
+  notifications: state.ui.notifications,
 }))(NotificationList);
