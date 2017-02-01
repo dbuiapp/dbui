@@ -30,6 +30,7 @@ async function addConnection({ dispatch }, { payload }) {
     dispatch({type: actionTypes.SAVE_STATE});
   } catch (err) {
     console.error(err);
+    dispatch(addNotification({message: err.message || err, className: 'callout alert'}));
   }
 }
 
@@ -71,7 +72,7 @@ async function connectionAction(store, { payload }) {
     dispatch({type: actionTypes.SAVE_STATE});
   } catch (err) {
     console.error(err);
-    dispatch(addNotification({message: err.message || err, className: 'callout alert'}))
+    dispatch(addNotification({message: err.message || err, className: 'callout alert'}));
   }
 }
 
