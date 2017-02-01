@@ -7,7 +7,7 @@ const initialState = {
   connections: {
     existingConnections: [],
   },
-  ui: {},
+  ui: { loading: {}, notifications: {}, dimensions: {} },
 };
 
 export function createStore() {

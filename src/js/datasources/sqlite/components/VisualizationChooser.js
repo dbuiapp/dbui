@@ -9,12 +9,9 @@ export class VisualizationChooser extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.props);
     const { dispatch, connection: { id, type } } = this.props;
     const { type: visType } = this.state;
     const visualization = visualizations[visType];
-
-    console.log(this.state);
 
     const form = event.target;
     const action = 'visualize';
@@ -29,8 +26,6 @@ export class VisualizationChooser extends Component {
         params[field] = input.value;
       }
     });
-
-    console.log(params);
 
     dispatch(connectionAction({ id, type, action, visType, params }));
   }
@@ -55,8 +50,8 @@ export class VisualizationChooser extends Component {
         <form onSubmit={this.onSubmit}>
           <select name="type">
             {Object.entries(visualizations).map(([key, value]) => (
-              <option value={key}>{value.name}</option>
-              ))};
+              <option key={key} value={key}>{value.name}</option>
+            ))};
           </select>
           {this.getVisualizationConfig(type)}
           <input type="submit" value="submit" className="button" />

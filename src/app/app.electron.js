@@ -1,4 +1,4 @@
-// import './shim';
+import './shim';
 import 'app-module-path/cwd';
 import { app, BrowserWindow } from 'electron';
 import { resolve } from 'path';

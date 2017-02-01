@@ -1,4 +1,4 @@
-// import './shim';
+import './shim';
 import 'app-module-path/cwd';
 import React from 'react';
 import { render } from 'react-dom';
