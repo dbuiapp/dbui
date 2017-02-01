@@ -12,5 +12,6 @@ export default async function ({ action, ...payload }) {
   if (!actionHandler) {
     throw new Error(`Unknown action "${action}"`);
   }
-  return await actionHandler(payload);
+  const response = await actionHandler(payload);
+  return response;
 }

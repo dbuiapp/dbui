@@ -6,7 +6,7 @@ import { shortenPath } from '../../../util';
 export class ConnectionListView extends Component {
   render() {
     const { connection } = this.props;
-    console.log(connection)
+    console.log(connection);
 
     return (
       <div className="mysql listview">

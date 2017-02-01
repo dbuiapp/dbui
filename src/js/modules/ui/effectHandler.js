@@ -1,9 +1,8 @@
 import global from 'global';
 import { handleActions } from 'redux-actions';
-import { actionTypes } from './actions';
+import { actionTypes, setDimensions } from './actions';
 import createEffectHandler from '../../util/createEffectHandler';
 import { initConnections } from '../connections/actions';
-import { setDimensions } from '../ui/actions';
 
 async function init({ dispatch }) {
   const connectionStateValue = global.localStorage.getItem('connectionState');
@@ -12,10 +11,10 @@ async function init({ dispatch }) {
     dispatch(initConnections(connectionState));
   }
 
-  function onResize () {
+  function onResize() {
     const dimensions = {
       height: global.innerHeight,
-      width: global.innerWidth
+      width: global.innerWidth,
     };
     dispatch(setDimensions(dimensions));
   }

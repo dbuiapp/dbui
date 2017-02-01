@@ -6,10 +6,10 @@ import { connectionAction } from '../../../modules/connections/actions';
 export class QueryResult extends Component {
 
   onRemove = (event) => {
-    const { query, connection: {type, id}, index, dispatch } = this.props;
+    const { query, connection: { type, id }, index, dispatch } = this.props;
     const action = 'removeQuery';
 
-    dispatch(connectionAction({type, id, action, index}));
+    dispatch(connectionAction({ type, id, action, index }));
   }
 
   resultTable(results) {
@@ -45,7 +45,7 @@ export class QueryResult extends Component {
 
     return (
       <div className="result">
-        {/*<a className="refresh-button" onClick={this.onRefresh}>↺</a>*/}
+        {/* <a className="refresh-button" onClick={this.onRefresh}>↺</a>*/}
         <a className="remove-button" onClick={this.onRemove}>×</a>
         <div className="result-query">{query.query}</div>
         {this.resultTable(query.results)}

@@ -3,7 +3,7 @@ import { actionTypes } from './actions';
 
 function addNotification(state, { payload }) {
   if (!payload.message) {
-    throw new Error(`Message not defined`);
+    throw new Error('Message not defined');
   }
   const { category = 'default' } = payload;
   return {
@@ -24,8 +24,8 @@ function removeNotification(state, { payload }) {
     notifications: {
       ...state.notifications,
       [category]: categoryNotifications.slice(),
-    }
-  }
+    },
+  };
 }
 
 function clearNotifications(state, { payload }) {
@@ -35,8 +35,8 @@ function clearNotifications(state, { payload }) {
     notifications: {
       ...state.notifications,
       [category]: [],
-    }
-  }
+    },
+  };
 }
 
 export default handleActions({
@@ -45,5 +45,5 @@ export default handleActions({
   [actionTypes.ADD_NOTIFICATION]: addNotification,
   [actionTypes.REMOVE_NOTIFICATION]: removeNotification,
   [actionTypes.CLEAR_NOTIFICATIONS]: clearNotifications,
-  [actionTypes.SET_DIMENSIONS]: (state, { payload }) => ({ ...state, dimensions: payload })
+  [actionTypes.SET_DIMENSIONS]: (state, { payload }) => ({ ...state, dimensions: payload }),
 }, {});

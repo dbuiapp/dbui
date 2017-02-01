@@ -11,7 +11,7 @@ ipcMain.on('request', async (event, ...args) => {
     const response = await actionHandler(payload);
     event.sender.send(`response-${requestId}`, response || false); // false == no result, so we can use property access
   } catch (err) {
-    console.trace(err)
+    console.trace(err);
     event.sender.send(`response-${requestId}`, { error: err.message || err });
   }
 });

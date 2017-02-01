@@ -4,10 +4,10 @@ import { registry } from '../../../datasources';
 
 const type = 'mysql';
 
-export default async function ({ host: hostname, username: user, password, database, ...rest }) {
+export default async function ({ host: hostname, username: user, password, database }) {
   const [host, port = 3306] = hostname.split(':');
 
-  const connection = await mysql.createConnection({host, port, user, password, database});
+  const connection = await mysql.createConnection({ host, port, user, password, database });
   const id = uuid();
 
   const connectionInfo = { id, type, connection };
