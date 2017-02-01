@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
+import { setRef } from '../../../../util';
 // this is broken for some reason
 // import d3 from 'd3';
 const d3 = require('d3');
 const nv = require('nvd3');
 
 export default class BarGraph extends Component {
-  componentDidUpdate() {
+  componentDidMount() {
     this.draw();
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.draw();
   }
 
   draw() {
     const { visualization } = this.props;
-    const { svg, container } = this.refs;
+    const { svg, container } = this;
 
     if (!visualization || !visualization.results) {
       return;
@@ -26,14 +27,14 @@ export default class BarGraph extends Component {
 
     nv.addGraph(() => {
       const chart = nv.models.discreteBarChart()
-          .x(val => val.x)
-          .y(val => val.y)
-          .staggerLabels(true)
-          .showValues(true);
+        .x(val => val.x)
+        .y(val => val.y)
+        .staggerLabels(true)
+        .showValues(true);
 
       d3.select(svg)
-            .datum([{ key: 'usernames', values: visualization.results }])
-            .call(chart);
+        .datum([{ key: 'usernames', values: visualization.results }])
+        .call(chart);
 
       return chart;
     });
@@ -42,8 +43,8 @@ export default class BarGraph extends Component {
   render() {
     const { visualization } = this.props;
     return (
-      <div ref="container" className="visualization bar-graph">
-        <svg ref="svg" />
+      <div ref={setRef(this, 'container')} className="visualization bar-graph">
+        <svg ref={setRef(this, 'svg')} />
         {JSON.stringify(visualization)}
       </div>
     );

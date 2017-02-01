@@ -24,9 +24,9 @@ export class NotificationList extends Component {
                 <li onClick={this.onRemove} data-index={index}>{notification}</li>
               );
             }
-            const { message, ...restProps } = notification;
+            const { message, ..._restProps } = notification;
             return (
-              <li onClick={this.onRemove} data-index={index} {...restProps}>{message}</li>
+              <li onClick={this.onRemove} data-index={index} {..._restProps}>{message}</li>
             );
           },
         )}

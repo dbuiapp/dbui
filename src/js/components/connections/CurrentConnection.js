@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import * as datasources from '../../datasources';
 import { connect } from 'react-redux';
+import * as datasources from '../../datasources';
 
 class CurrentConnection extends Component {
-  selectConnection(connection) {
-    const datasource = datasources[connection && connection.type];
-    return datasource ? React.createElement(datasource.components.ConnectionView, { connection }) : (
-      <div>
-        Please select a connection
-      </div>
-    );
-  }
-
   componentWillReceiveProps(props) {
     console.log({ props });
   }
 
   render() {
     const { currentConnection } = this.props;
+    const datasource = datasources[currentConnection && currentConnection.type];
     return (
       <div className="small-12 medium-9 columns current-connection">
-        {this.selectConnection(currentConnection)}
+        {
+          datasource ?
+            React.createElement(datasource.components.ConnectionView, { connection: currentConnection }) :
+            (
+              <div>
+                Please select a connection
+              </div>
+            )
+        }
       </div>
     );
   }

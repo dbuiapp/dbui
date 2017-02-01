@@ -3,4 +3,15 @@ parser: babel-eslint
 rules:
   no-console: 0
   react/jsx-filename-extension: 0
+  react/prefer-stateless-function: 0
   import/extensions: 0
+  # possibly remove:
+  react/prop-types: 0
+  import/no-named-as-default: 0
+  # disabled temporarily
+  no-unused-vars: 0
+  jsx-a11y/no-static-element-interactions: 0
+  eqeqeq: 0
+  max-len: 0
+  react/no-array-index-key: 0
+  class-methods-use-this: 0

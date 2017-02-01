@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import * as datasources from '../../datasources/';
 import { connect } from 'react-redux';
+import * as datasources from '../../datasources/';
 import { addConnection, selectConnection } from '../../modules/connections/actions';
+import { setRef } from '../../util';
 
 export class ConnectionSelector extends Component {
 
@@ -9,7 +10,7 @@ export class ConnectionSelector extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.resetConnectionSelector) {
-      this.refs.selector.value = '';
+      this.selector.value = '';
       this.setState({ selectedConnection: null });
     }
   }
@@ -28,7 +29,7 @@ export class ConnectionSelector extends Component {
 
     const datasource = datasources[type];
     const fields = datasource.fields;
-    const settings = fields.reduce((settings, field) => ({ ...settings, [field]: form[field].value }), {});
+    const settings = fields.reduce((_settings, field) => ({ ..._settings, [field]: form[field].value }), {});
 
     dispatch(addConnection({ ...settings, type }));
   }
@@ -38,7 +39,7 @@ export class ConnectionSelector extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <select ref="selector" name="type" className="expanded" onChange={this.onChange}>
+        <select ref={setRef(this, 'selector')} name="type" className="expanded" onChange={this.onChange}>
           <option value="">Data Source</option>
           {Object.entries(datasources).map(([key, value]) => <option key={key} value={key}>{value.name || key}</option>)}
         </select>

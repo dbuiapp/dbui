@@ -6,9 +6,13 @@ export default class TabView extends Component {
     defaultTab: PropTypes.string,
   };
 
+  static defaultProps = {
+    defaultTab: 'default',
+  };
+
   state = { activeTab: null };
 
-  componentDidMount() {
+  componentWillMount() {
     const { defaultTab } = this.props;
     if (defaultTab) {
       this.setState({ activeTab: defaultTab });
@@ -16,11 +20,8 @@ export default class TabView extends Component {
   }
 
   activeTab = tabId => ({ isActive: this.state.activeTab == tabId })
-
   activeTabTitle = tabId => ({ 'aria-selected': this.state.activeTab == tabId })
-
   activePanel = tabId => ({ isActive: this.state.activeTab == tabId, 'aria-hidden': this.state.activeTab != tabId })
-
   tabClick = (event) => {
     const tab = event.target.getAttribute('data-tab');
     if (tab) {
