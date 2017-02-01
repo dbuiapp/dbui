@@ -19,9 +19,11 @@ export class ConnectionView extends Component {
           <Tab label="Query" tabId="query">
             <QueryTab connection={connection} />
           </Tab>
+          {/* //wait until schema tab is done
           <Tab label="Schema" tabId="schema">
             <SchemaTab connection={connection} />
           </Tab>
+          */}
           <Tab label="Visualize" tabId="visualize">
             <VisualizeTab connection={connection} />
           </Tab>
