@@ -9,7 +9,6 @@ export default async function ({ path, ...rest }) {
   const id = uuid();
 
   const connectionInfo = { id, type, connection };
-
   await registry.addConnection(connectionInfo);
 
   return { id, path, type };

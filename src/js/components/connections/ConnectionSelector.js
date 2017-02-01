@@ -38,7 +38,7 @@ export class ConnectionSelector extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <select ref="selector" name="type" className="expanded small" onChange={this.onChange}>
+        <select ref="selector" name="type" className="expanded" onChange={this.onChange}>
           <option value="">Data Source</option>
           {Object.entries(datasources).map(([key, value]) => <option key={key} value={key}>{value.name || key}</option>)}
         </select>

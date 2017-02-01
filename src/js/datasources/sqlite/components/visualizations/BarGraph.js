@@ -1,37 +1,48 @@
 import React, { Component } from 'react';
-import d3 from 'd3';
+// this is broken for some reason
+//import d3 from 'd3';
+const d3 = require('d3');
+const nv = require('nvd3');
 
 export default class BarGraph extends Component {
   componentDidUpdate () {
+    this.draw();
+  }
+
+  componentDidMount () {
+    this.draw();
+  }
+
+  draw () {
     const { visualization } = this.props;
-    const graph = d3.select(this.refs.svg);
+    const { svg, container } = this.refs;
 
-    const margin = {top: 10, right: 30, bottom: 30, left: 30},
-    const width = +svg.attr("width") - margin.left - margin.right,
-    const height = +svg.attr("height") - margin.top - margin.bottom,
-    const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    if (!visualization || !visualization.results) {
+      return;
+    }
+    svg.setAttribute('width', container.offsetWidth);
+    svg.setAttribute('height', 200);
+    var data = visualization.results;
 
-    const bar = graph
-      .selectAll('.bar')
-      .data(visualization.results)
-      .enter().append("g")
-      .attr("class", "bar")
-      .attr("fill", "#00ff00")
-      .attr("transform", function(d) {
-        return "translate(" + x(d.x0) + "," + y(d.length) + ")";
-      });;
+    nv.addGraph(function() {
+        var chart = nv.models.discreteBarChart()
+          .x(val => val.x)
+          .y(val => val.y)
+          .staggerLabels(true)
+          .showValues(true);
 
-    bar.append("rect")
-      .attr("x", 1)
-      .attr("width", x(bins[0].x1) - x(bins[0].x0) - 1)
-      .attr("height", function(d) { return height - y(d.length); });
+        d3.select(svg)
+            .datum([{key: 'usernames', values: visualization.results}])
+            .call(chart);
+
+        return chart;
+    });
   }
 
   render () {
     const { visualization } = this.props;
-    console.log(this.props)
     return (
-      <div className="visualization bar-graph">
+      <div ref="container" className="visualization bar-graph">
         <svg ref="svg" />
         {JSON.stringify(visualization)}
       </div>

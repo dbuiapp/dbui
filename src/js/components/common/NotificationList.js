@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { removeNotification } from '../../modules/ui/actions';
 
 export class NotificationList extends Component {
+  onRemove = (event) => {
+    const { category, dispatch } = this.props;
+    const index = event.target.getAttribute('data-index');
+
+    dispatch(removeNotification({category, index}));
+  }
+
   render() {
-    const { filter, notifications, ...restProps } = this.props;
-    return notifications && notifications.length ? (
+    console.log(this.props)
+    const { category = 'default', notifications, ...restProps } = this.props;
+    console.log(notifications, notifications[category])
+    return notifications && notifications[category] && notifications[category].length ? (
       <ul {...restProps} >
-        {notifications
-          .filter(notification => (filter && notification.filter) ? (notification.filter == filter) : true)
-          .map((notification) => {
+        {(notifications[category] || [])
+          //.filter(notification => (category && notification.category) ? (notification.category == category) : true)
+          .map((notification, index) => {
             if (typeof notification === 'string') {
               return (
-                <li>{notification}</li>
+                <li onClick={this.onRemove} data-index={index}>{notification}</li>
               );
             }
             const { message, ...restProps } = notification;
             return (
-              <li {...restProps}>{message}</li>
+              <li onClick={this.onRemove} data-index={index} {...restProps}>{message}</li>
             );
           },
         )}
@@ -25,6 +35,6 @@ export class NotificationList extends Component {
   }
 }
 
-export default connect((state) => {
-  notifications: state.ui.notifications;
-})(NotificationList);
+export default connect((state) => ({
+  notifications: state.ui.notifications
+}))(NotificationList);

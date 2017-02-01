@@ -12,6 +12,10 @@ export const createRequest = (action, payload) => new Promise((resolve, reject) 
 
   ipcRenderer.send('request', requestId, action, payload);
   ipcRenderer.once(`response-${requestId}`, (event, payload) => {
+    console.log(payload);
+    if (payload.error) {
+      reject(new Error(payload.error || payload));
+    }
     resolve(payload);
   });
 });
