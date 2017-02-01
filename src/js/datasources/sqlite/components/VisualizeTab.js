@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { connectionAction } from '../../../modules/connections/actions';
-import QueryResult from './QueryResult';
-import d3 from 'd3';
+import Visualization from './Visualization';
+import VisualizationChooser from './VisualizationChooser';
 
 export class VisualizeTab extends Component {
 
@@ -21,14 +21,11 @@ export class VisualizeTab extends Component {
     const { connection } = this.props;
     return (
       <div className="visualize">
-        <form onSubmit={this.onSubmit}>
-          <input type="text" name="query" />
-          <input type="submit" className="button primary" value="submit" />
-        </form>
+        <VisualizationChooser connection={connection} />
         <ul className="no-bullet">
-          {(connection.queries || []).map((query, index) => (
+          {(connection.visualizations || []).map((visualization, index) => (
             <li key={index}>
-              {React.createElement(QueryResult, { query, connection, index })}
+              {React.createElement(Visualization, { visualization, connection, index })}
             </li>
             ))}
         </ul>
