@@ -13,7 +13,7 @@ export default async function visualize(store, payload) {
   const query = visualization.transform(params);
   const response = await createRequest('connection', { id, query, action: 'runQuery' });
   const { connections } = store.getState();
-  const updatedConnection = connections.existingConnections.filter(conn => conn.id == id)[0];
+  const updatedConnection = connections.existingConnections.filter(conn => conn.id === id)[0];
 
   if (!updatedConnection) {
     throw new Error('Could not find connection');

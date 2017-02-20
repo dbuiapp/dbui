@@ -19,9 +19,9 @@ export default class TabView extends Component {
     }
   }
 
-  activeTab = tabId => ({ isActive: this.state.activeTab == tabId })
-  activeTabTitle = tabId => ({ 'aria-selected': this.state.activeTab == tabId })
-  activePanel = tabId => ({ isActive: this.state.activeTab == tabId, 'aria-hidden': this.state.activeTab != tabId })
+  activeTab = tabId => ({ isActive: this.state.activeTab === tabId })
+  activeTabTitle = tabId => ({ 'aria-selected': this.state.activeTab === tabId })
+  activePanel = tabId => ({ isActive: this.state.activeTab === tabId, 'aria-hidden': this.state.activeTab !== tabId })
   tabClick = (event) => {
     const tab = event.target.getAttribute('data-tab');
     if (tab) {

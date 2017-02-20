@@ -48,7 +48,7 @@ export class DatasourceConfig extends Component {
       <div>
         <div>
           {
-            (backendName == 'electron-ipc') ?
+            (backendName === 'electron-ipc') ?
               this.getPathSelector() :
               <input name="path" className="small expand" type="text" placeholder="Path" />
           }
