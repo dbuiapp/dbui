@@ -19,6 +19,7 @@ Getting Started
 TODO
 ====
 
+- [ ] DRY common components
 - [ ] More visualization types
 - [ ] Schema editor
 - [ ] Query builder
