@@ -1,92 +1,91 @@
 {
-  "name": "dbui",
-  "version": "0.0.1-beta2",
-  "description": "",
-  "main": "build/app/app.electron.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dbuiapp/dbui.git"
+  "name": "src2",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-static": "^3.0.0",
+    "mobx": "^3.1.9",
+    "mobx-react": "^4.1.8",
+    "mz": "^2.6.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "6.7.2",
+    "babel-core": "6.22.1",
+    "babel-eslint": "7.1.1",
+    "babel-jest": "18.0.0",
+    "babel-loader": "6.2.10",
+    "babel-preset-react-app": "^2.2.0",
+    "babel-runtime": "^6.20.0",
+    "case-sensitive-paths-webpack-plugin": "1.1.4",
+    "chalk": "1.1.3",
+    "connect-history-api-fallback": "1.3.0",
+    "cross-spawn": "4.0.2",
+    "css-loader": "0.26.1",
+    "detect-port": "1.1.0",
+    "dotenv": "2.0.0",
+    "eslint": "3.16.1",
+    "eslint-config-react-app": "^0.6.2",
+    "eslint-loader": "1.6.0",
+    "eslint-plugin-flowtype": "2.21.0",
+    "eslint-plugin-import": "2.0.1",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.4.1",
+    "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.10.0",
+    "fs-extra": "0.30.0",
+    "html-webpack-plugin": "2.24.0",
+    "http-proxy-middleware": "0.17.3",
+    "jest": "18.1.0",
+    "json-loader": "0.5.4",
+    "object-assign": "4.1.1",
+    "postcss-loader": "1.2.2",
+    "promise": "7.1.1",
+    "react-dev-utils": "^0.5.2",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
+    "webpack": "1.14.0",
+    "webpack-dev-server": "1.16.2",
+    "webpack-manifest-plugin": "1.1.0",
+    "whatwg-fetch": "2.0.2"
   },
   "scripts": {
-    "package": "electron-packager . --out pkg --overwrite",
-    "rebuild": "electron-rebuild",
-    "start": "electron .",
-    "precommit": "nrun lint",
-    "lint": "eslint src",
-    "test": "nrun test-unit",
-    "test-unit": "nyc --require babel-register --reporter=text --reporter=lcov mocha tests/unit/**/*.js",
-    "build": "nrun clean-build && nrun build-pages && nrun build-css && nrun build-app && nrun build-js && nrun build-css",
-    "watch": "nrun watch-app & nrun watch-js & nrun watch-css",
-    "build-app": "babel src/app -d build/app",
-    "watch-app": "babel --watch src/app -d build/app",
-    "build-js": "babel src/js -d build/",
-    "watch-js": "babel --watch src/js -d build/",
-    "build-css": "node-sass --output-style compressed --include-path node_modules/foundation-sites/scss src/css/main.scss --output build/",
-    "watch-css": "node-sass --watch --output-style compressed --include-path node_modules/foundation-sites/scss src/css/main.scss --output build/",
-    "build-pages": "nrun generate-settings && pug -O settings.json src/pages/ -o build/",
-    "generate-settings": "node --harmony scripts/generate-settings.js",
-    "clean-build": "rm -rf build/*"
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom"
   },
-  "author": "Richard Hoffman <coverslide@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-eslint": "^7.1.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-fast-async": "^6.1.2",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2015-node": "^6.1.1",
-    "babel-preset-es2017": "^6.22.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "babel-root-import": "^4.1.3",
-    "chai": "^3.5.0",
-    "electron-packager": "^8.5.1",
-    "electron-rebuild": "^1.5.7",
-    "eslint": "^3.14.1",
-    "eslint-config-airbnb": "^14.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
-    "fast-async": "^6.1.2",
-    "husky": "^0.13.1",
-    "mocha": "^3.2.0",
-    "node-sass": "^3.10.1",
-    "nrun": "^0.1.7",
-    "nyc": "^10.1.2",
-    "pug-cli": "^1.0.0-alpha6"
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    }
   },
-  "dependencies": {
-    "app-module-path": "^2.2.0",
-    "babel-runtime": "^6.22.0",
-    "bluebird": "^3.4.7",
-    "classnames": "^2.2.5",
-    "d3": "^3.5.17",
-    "elasticsearch": "^12.1.3",
-    "electron": "1.4.13",
-    "foundation-sites": "^6.2.4",
-    "global": "^4.3.1",
-    "inert": "^4.0.2",
-    "mongodb": "^2.2.11",
-    "nvd3": "^1.8.5",
-    "pg-promise-strict": "^0.2.11",
-    "promise-mysql": "^3.0.0",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-foundation": "^0.7.0",
-    "react-redux": "^4.4.5",
-    "redis": "^2.6.3",
-    "redux": "^3.6.0",
-    "redux-actions": "^0.13.0",
-    "redux-form": "^6.5.0",
-    "redux-logger": "^2.7.4",
-    "sqlite": "^2.2.4",
-    "uuid": "^3.0.1"
-  },
-  "nyc": {
-    "include": [
-      "src"
+  "babel": {
+    "presets": [
+      "react-app"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
