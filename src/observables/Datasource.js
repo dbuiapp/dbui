@@ -7,6 +7,7 @@ export default class Datasource {
   @observable newType = null;
   @observable connections = [];
   @observable selected = null;
+  @observable connectionData = {};
 
   @action setNewType (selection) {
     this.newType = selection;

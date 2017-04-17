@@ -8,21 +8,21 @@ import { QueryPane, SchemaPane, VisualizePane } from "../../../common/frontend/p
 export default class Connection extends Component {
 
   render () {
-    const { params } = this.props;
+    const { connection } = this.props;
     return (
       <div>
         <h1>SQLite</h1>
-        <p>{params.path}</p>
+        <p>{connection.params.path}</p>
 
         <Tab fluid>
           <Tab.Pane name="Query">
-            <QueryPane />
+            <QueryPane connection={connection} />
           </Tab.Pane>
           <Tab.Pane name="Schema">
-            <SchemaPane />
+            <SchemaPane connection={connection} />
           </Tab.Pane>
           <Tab.Pane name="Visualize">
-            <VisualizePane />
+            <VisualizePane connection={connection} />
           </Tab.Pane>
         </Tab>
       </div>

@@ -17,7 +17,7 @@ export default class DataSource extends Component {
     if (!datasource.Connection) {
       return <Message negative>Data source does not contain Connection component.</Message>;
     }
-    return <datasource.Connection params={connection.params} />;
+    return <datasource.Connection connection={connection} />;
   }
 
   render () {

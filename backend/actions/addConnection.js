@@ -7,6 +7,7 @@ module.exports = async function addConnection (args) {
   if (id) {
     const connection = connections.get(id);
     if (
+      connection &&
       connection.type === type &&
       deepEqual(params, connection.params)
     ) {
