@@ -3,8 +3,6 @@ import { app, BrowserWindow } from 'electron';
 import { resolve } from 'path';
 //import './ipc';
 
-console.log(version);
-
 app.on('window-all-closed', () => {
   app.quit();
 });
