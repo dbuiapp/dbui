@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "deep-equal": "^1.0.1",
+    "json-promise": "^1.1.8",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-static": "^3.0.0",
@@ -13,6 +15,7 @@
     "mz": "^2.6.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-native-web": "^0.0.81",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.67.2",
     "sqlite": "^2.5.0"
@@ -32,7 +35,7 @@
     "css-loader": "0.26.1",
     "detect-port": "1.1.0",
     "dotenv": "2.0.0",
-    "eslint": "3.16.1",
+    "eslint": "^3.19.0",
     "eslint-config-react-app": "^0.6.2",
     "eslint-loader": "1.6.0",
     "eslint-plugin-flowtype": "2.21.0",
@@ -99,6 +102,18 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "eqeqeq": 1,
+      "camelcase": 1,
+      "quotes": [
+        1,
+        "double"
+      ],
+      "jsx-quotes": [
+        1,
+        "prefer-double"
+      ]
+    }
   }
 }

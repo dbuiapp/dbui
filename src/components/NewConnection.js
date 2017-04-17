@@ -15,7 +15,7 @@ export default class NewConnection extends Component {
     store.datasource.setNewType(data.value);
   }
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
     event.preventDefault();
 
     const { store } = this.props;
@@ -25,7 +25,8 @@ export default class NewConnection extends Component {
 
     const params = fields.reduce((params, field) => ({...params, [field]: form[field].value}), {});
 
-    store.datasource.addConnection(type, params);
+    const connection = await store.datasource.addConnection(type, params);
+    await store.datasource.selectConnection(connection.id);
   }
 
   showDataConnection = (type) => {
@@ -42,7 +43,7 @@ export default class NewConnection extends Component {
     return <Form onSubmit={this.onSubmit}>
       <datasource.ConnectionInfo />
       <br />
-      <Button type="submit" fluid>Submit</Button>
+      <Button primary type="submit" fluid>Submit</Button>
     </Form>;
   }
 

@@ -8,10 +8,8 @@ const app = new Koa();
 app.use(cors());
 app.use(bodyParser());
 app.use(async (ctx, next) => {
-  const actionName = ctx.path.split('/').pop();
+  const actionName = ctx.path.split("/").pop();
   const action = actions[actionName];
-  console.log(action);
-  console.log(ctx.request.body);
   if (!action) {
     return;
   }

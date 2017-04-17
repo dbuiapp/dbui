@@ -25,7 +25,7 @@ export default class Tab extends Component {
 
     return <div>
       <Menu tabular attached {...props}>
-        {children.map((child, index) => {
+        {React.Children.toArray(children).map((child, index) => {
           return <Menu.Item key={index} onClick={this.createOnTabClick(index)} active={this.state.activeIndex === index}>
             {child.props.name}
           </Menu.Item>;

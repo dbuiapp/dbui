@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Provider } from "mobx-react";
 import Layout from "./Layout";
 
