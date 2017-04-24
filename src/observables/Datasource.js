@@ -2,6 +2,7 @@ import { observable, action } from "mobx";
 import createRequest from "../backend";
 import { AsyncStorage } from "react-native";
 import json from "json-promise";
+import * as datasources from "datasources";
 
 export default class Datasource {
   @observable newType = null;
@@ -18,6 +19,7 @@ export default class Datasource {
     const { connectionId } = response;
     const connection = { id: connectionId, type, params };
     this.connections.push(connection);
+    this.connectionData[connectionId] = new datasources[type].Store(connectionId);
     const connectionsStr = await json.stringify(this.connections);
     await AsyncStorage.setItem("connections", connectionsStr);
     return connection;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Sidebar, Container, Menu, Segment, Grid, Icon } from "semantic-ui-react";
-import DataSourceList from "./DataSourceList";
-import DataSource from "./DataSource";
 import { observer, inject } from "mobx-react";
+import DataSourceList from "components/DataSourceList";
+import DataSource from "components/DataSource";
 
 import Tab from "./common/Tab";
 
@@ -30,7 +30,9 @@ export default class Layout extends Component {
                 </Grid.Column>
               }
               <Grid.Column width={store.ui.showMenu ? 12 : 16}>
-                <Icon name="bars" onClick={this.onToggleMenu}/>
+                <a href="javascript:">
+                  <Icon size="large" name="bars" onClick={this.onToggleMenu}/>
+                </a>
                 <DataSource />
               </Grid.Column>
             </Grid>

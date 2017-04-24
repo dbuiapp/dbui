@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "mobx-react";
-import Layout from "./Layout";
+import Layout from "components/Layout";
 
 class App extends Component {
   render() {

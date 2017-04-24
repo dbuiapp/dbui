@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { Segment, Select, Message, Button, Form } from "semantic-ui-react";
-import * as datasources from "../datasources";
+import * as datasources from "datasources";
 
 console.log(datasources);
 
@@ -15,21 +15,19 @@ export default class NewConnection extends Component {
     store.datasource.setNewType(data.value);
   }
 
-  onSubmit = async (event) => {
+  onSubmit = (event) => {
     event.preventDefault();
 
     const { store } = this.props;
     const type = store.datasource.newType;
     const form = event.target;
     const fields = datasources[type].ConnectionInfo.fields;
-
     const params = fields.reduce((params, field) => ({...params, [field]: form[field].value}), {});
 
-    const connection = await store.datasource.addConnection(type, params);
-    await store.datasource.selectConnection(connection.id);
+    store.datasource.addConnection(type, params);
   }
 
-  showDataConnection = (type) => {
+  renderConnectionInfo = (type) => {
     if (!type) {
       return null;
     }
@@ -43,7 +41,7 @@ export default class NewConnection extends Component {
     return <Form onSubmit={this.onSubmit}>
       <datasource.ConnectionInfo />
       <br />
-      <Button primary type="submit" fluid>Submit</Button>
+      <Button type="submit" fluid>Submit</Button>
     </Form>;
   }
 
@@ -54,7 +52,7 @@ export default class NewConnection extends Component {
       <Segment basic>
         <Select fluid onChange={this.onSetNewType} placeholder="Select data type" options={datasourceOptions} value={store.datasource.newType || null} />
         <br />
-        {this.showDataConnection(store.datasource.newType)}
+        {this.renderConnectionInfo(store.datasource.newType)}
       </Segment>
     </div>;
   }

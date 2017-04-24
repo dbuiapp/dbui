@@ -1,23 +1,16 @@
 import React, { Component } from "react";
-import { Segment, Button, Container, Form, Message } from "semantic-ui-react";
+import { Segment, Button, Container } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
-import * as datasources from "../datasources";
+import * as datasources from "datasources";
 
 @inject("store") @observer
 export default class DataSource extends Component {
-  renderConnection (connection) {
-    if (!connection) {
-      return <Segment>Please choose a data source</Segment>;
+  renderConnection (selected) {
+    if (!selected || !datasources[selected.type]) {
+      return <Segment ><h1>Please select a data source.</h1></Segment>;
     }
-    const { type } = connection;
-    const datasource = datasources[type];
-    if (!datasource) {
-      return <Message negative>Data source is not recognized</Message>;
-    }
-    if (!datasource.Connection) {
-      return <Message negative>Data source does not contain Connection component.</Message>;
-    }
-    return <datasource.Connection connection={connection} />;
+    const Element = datasources[selected.type].Connection;
+    return <Element connection={selected} />;
   }
 
   render () {

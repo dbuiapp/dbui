@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Menu, Segment, Button, Label, Icon, Accordion, Message } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
-import NewConnection from "./NewConnection";
-import * as datasources from "../datasources";
+import NewConnection from "components/NewConnection";
+import * as datasources from "datasources";
 
 @inject("store") @observer
 export default class DataSourceList extends Component {
@@ -62,7 +62,7 @@ export default class DataSourceList extends Component {
     return (
       <div>
         { store.datasource.connections.length > 0 &&
-          <Segment.Group vertical>
+          <Segment.Group>
             {this.renderConnectionPanels(store.datasource.connections)}
           </Segment.Group>
         }
