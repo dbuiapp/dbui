@@ -1,4 +1,4 @@
-const datasources = require("../../src/datasources/backend");
+const datasources = require("datasources/backend");
 const { connections } = require("../");
 const deepEqual = require("deep-equal");
 

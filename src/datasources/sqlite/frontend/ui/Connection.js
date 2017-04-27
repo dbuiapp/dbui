@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Input } from "semantic-ui-react";
 import { inject, observer } from "mobx-react";
-import Tab from "../../../../components/common/Tab";
-import { QueryPane, SchemaPane, VisualizePane } from "../../../common/frontend/panes";
+import Tab from "components/common/Tab";
+import { QueryPane, SchemaPane, VisualizePane } from "datasources/common/frontend/panes";
 
 @inject("store") @observer
 export default class Connection extends Component {

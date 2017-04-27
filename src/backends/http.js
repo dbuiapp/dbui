@@ -8,5 +8,9 @@ export default async function createRequest (action, params) {
       body: JSON.stringify(params)
     })
   );
-  return response.json();
+  const data = await response.json();
+  if (response.status > 299 && data.error) {
+    throw new Error(data.error);
+  }
+  return data;
 }

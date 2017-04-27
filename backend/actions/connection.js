@@ -1,7 +1,5 @@
-const datasources = require("../../src/datasources/backend");
+const datasources = require("datasources/backend");
 const { connections } = require("../");
-
-console.log(connections);
 
 module.exports = async function connection (args) {
   const { id, action, params } = args;
