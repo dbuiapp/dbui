@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Icon, Divider, Accordion, Loader, Button, Table, Message } from "semantic-ui-react";
+import { Form, Input, Icon, Accordion, Loader, Button, Table, Message } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
 
 @inject("store") @observer

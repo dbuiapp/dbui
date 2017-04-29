@@ -1,10 +1,10 @@
 import { observable } from "mobx";
-import createRequest from "backend";
 import Query from "./Query";
+import Schema from "./Schema";
 
 export default class Store {
   @observable queries = [];
-  @observable schema = {};
+  @observable schema = null;
   @observable visualizations = {};
 
   @observable queryLoading = false;
@@ -13,6 +13,11 @@ export default class Store {
 
   constructor (id) {
     this.id = id;
+  }
+
+  async loadSchema () {
+    this.schema = new Schema(this.id);
+    await this.schema.load();
   }
 
   async removeQuery (queryData) {
@@ -41,7 +46,5 @@ export default class Store {
       }
     }
     this.queryLoading = false;
-
-    console.log(this.lastError)
   }
 }
