@@ -79,7 +79,7 @@ export default class QueryPane extends Component {
               <Button onClick={this.makeOnRefreshClick(queryData)}><Icon name="refresh" /></Button>
               <Button onClick={this.makeOnDeleteClick(queryData)}>×</Button>
             </Accordion.Title>,
-            <Accordion.Content onClick={this.makeToggle(queryData)} active={queryData.expanded}>
+            <Accordion.Content active={queryData.expanded}>
               {queryData.loading && <Loader active inline />}
               {!queryData.loading && !queryData.error && this.renderRows(queryData.rows)}
               {queryData.error && <Message error>{queryData.error}</Message>}
