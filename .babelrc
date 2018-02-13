@@ -1,7 +1,0 @@
-{
-  "presets": ["es2015-node", "es2017", "stage-0", "react"],
-  "plugins": [
-    "transform-runtime",
-    "add-module-exports"
-  ]
-}
