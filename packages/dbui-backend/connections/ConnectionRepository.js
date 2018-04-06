@@ -25,7 +25,10 @@ class ConnectionRepository {
     return this.connections[id];
   }
 
-  async removeConnection (connection) {
+  async removeConnection (id) {
+    if (!this.connections[id]) {
+      throw new Error('Connection not found');
+    }
     await this.connections[id].disconnect();
     this.connections[id] = null;
   }
