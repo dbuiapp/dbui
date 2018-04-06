@@ -6,7 +6,7 @@ class BlankConnection extends Connection {
 }
 class DummyConnection extends Connection {
   setActions () {
-
+    this.actions = {};
   }
 }
 
@@ -43,7 +43,7 @@ describe('Connection',  () => {
   describe('exec',  () => {
     it('should reject when action is not implemented', async () => {
       const conn = new DummyConnection();
-      expect(conn.connect()).to.be.rejectedWith('Not implemented'); 
+      expect(conn.exec('zzz')).to.be.rejectedWith('Not implemented'); 
     });
   });
 });
