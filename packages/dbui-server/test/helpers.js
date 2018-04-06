@@ -1,11 +1,11 @@
-const { describe, it, beforeEach } = require('mocha');
+const { describe, it, beforeEach, afterEach } = require('mocha');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const package = require('../');
+const { expect } = chai;
 
 chai.use(chaiAsPromised);
 
-exports.package = require('../');
-exports.describe = describe;
-exports.it = it;
-exports.beforeEach = beforeEach;
-exports.expect = chai.expect;
+Object.assign(exports, {
+  package, describe, it, beforeEach, afterEach, expect
+});

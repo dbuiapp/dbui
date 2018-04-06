@@ -27,17 +27,13 @@ function detectValidOrigin (originRegexs, clientOrigin) {
   })
 }
 
-async function start (configPath, cb) {
-  try {
-    const fileContents = await fs.readFile(configPath, 'utf8');
-    const config = toml.parse(fileContents) || {};
-    return startWithConfig(config, cb);
-  } catch (err) {
-    cb(err);
-  }
+async function start (configPath) {
+  const fileContents = await fs.readFile(configPath, 'utf8');
+  const config = toml.parse(fileContents) || {};
+  return startWithConfig(config);
 }
 
-async function startWithConfig (config, cb) {
+async function startWithConfig (config) {
   const validOrigins = ((config.cors && config.cors.origins) || ['*'])
     .map(origin => {
       const regex = origin.replace(/\./g, '\\.').replace(/\*/g, '\\w*');
@@ -56,30 +52,33 @@ async function startWithConfig (config, cb) {
       if (origin) {
         res.setHeader('Access-Control-Allow-Origin', origin);
       }
-      const [ action, connectionId ] = req.url.slice(1).split('/');
 
       const { fields: payload } = await formidablePromise(req);
 
       // create new connection
       if (req.method === 'POST') {
-        const type = action;
+        const [ type ] = req.url.slice(1).split('/');
         const id = await repo.createConnection(type, payload);
+        res.statusCode = 201;
         return res.end(id);
       } else if (req.method === 'DELETE') {
-        const id = action;
+        const [ connectionId ] = req.url.slice(1).split('/');
         await repo.removeConnection(id);
-        res.end();
+        return res.end();
       } else if (req.method === 'PUT') {
+        const [ connectionId, action ] = req.url.slice(1).split('/');
         const connection = repo.getConnection(connectionId);
         const response = await connection.exec(action, payload);
-        res.end(JSON.stringify(response));
+        return res.end(JSON.stringify(response));
       } else if (req.method === 'OPTIONS') {
-        res.end();
+        return res.end();
       } else {
-        throw new Error('Unhandled method');
+        res.statusCode = 400;
+        return res.end(JSON.stringify({
+          error: 'Unhandled method'
+        }));
       }
     } catch (err) {
-      console.error(err);
       res.statusCode = 500;
       res.end(JSON.stringify({
         error: err.message
@@ -87,9 +86,14 @@ async function startWithConfig (config, cb) {
     }
   });
 
-  return new Promise((resolve, reject) => {
-    server.listen(config.server.port, config.server.host, (err) => err ? reject(err) : resolve(server));
+  const port = config.server && config.server.port;
+  const host = config.server && config.server.host;
+
+  await new Promise((resolve, reject) => {
+    server.listen(port, host, (err) => err ? reject(err) : resolve(server));
   });
+
+  return { server, repo };
 }
 
 module.exports = start;
